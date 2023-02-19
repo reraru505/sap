@@ -1,12 +1,13 @@
 package main
 
 import (
-	//"fmt"
-       "strings"
+	"fmt"
+	"strings"
+	"os"
 )
 
 const (
-	FKEY=iota+1 //keyword 
+	FKEY =iota //keyword 
 	FID //identifier
 	FLIT //literal
 	FOP //operator
@@ -19,7 +20,7 @@ const (
 //keyword n identifier
 
 func check_Keyword(val string) bool{
-	keys :=[11]string{
+	keys :=[12]string{
 		"i32",
 		"i64",
 		"f32",
@@ -30,16 +31,88 @@ func check_Keyword(val string) bool{
 		"else",
 		"while",
 		"struct",
-		"proc"
-	}
-     var bVal=false
+		"proc",
+		"return"}
+
      for _ , v:= range keys {
-     	 if val==keys[v] {
-	    bVal=true
+	 if val == v {
+	    return true
 	 }
      }
-     return bVal
+     return false
      
+}
+
+//identifier
+
+func check_identifier(val string) bool{
+	arr := [] rune (val)
+	keys :=   [54]rune {
+		'a',
+		'b',
+		'c',
+		'd',
+		'e',
+		'f',
+		'g',
+		'h',
+		'i',
+		'j',
+		'k',
+		'l',
+		'm',
+		'n',
+		'o',
+		'p',
+		'q',
+		'r',
+		's',
+		't',
+		'u',
+		'v',
+		'w',
+		'x',
+		'y',
+		'z',
+		'A',
+		'B',
+		'C',
+		'D',
+		'E',
+		'F',
+		'G',
+		'H',
+		'I',
+		'J',
+		'K',
+		'H',
+		'L',
+		'M',
+		'N',
+		'O',
+		'P',
+		'Q',
+		'R',
+		'S',
+		'T',
+		'U',
+		'V',
+		'W',
+		'X',
+		'Y',
+		'Z',
+		'_'}
+
+	
+	for _ , i := range keys{
+		if(arr[0] == i){
+			return true
+		}
+	}
+
+	return false	
+
+	
 }
 
 //literal
@@ -68,35 +141,42 @@ func check_literal(val string) bool{
 //special symbol
 
 func check_operator(val string) bool{
-     keys:=[14]string{"!","%","*","-","+","/","|","&","&&","||",">","<","."}
-     var bVal=false
-     for _ ,v:=range keys {
-     	 if val==keys[v] {
-	    bVal=true
+     keys:=[17]string{"!","%","*","-","+","/","|","&","&&","||",">","<",".",":",",","="}
+   
+     for _ ,v := range keys {
+     	 if val==v {
+	    return true
 	  }
      }
-     return bVal
+     return false
 }
 
 
 //binds all functions 
 func type_checker(val string) int{
 
-	switch{
-		case check_keyword(val):
+	if check_Keyword(val){
 		return FKEY
-		case check_literal(val):
+	}else if  check_literal(val){
 		return FLIT
-		case ckeck_operator(val):
+	}else if  check_operator(val){
 		return FOP
-		case val == "(":
+	}else if  check_identifier(val){
+		return FID
+	}else if  val == "("{
 		return FST
-		case val == ")":
+	}else if  val == ")"{
 		return FEN
-		case val == "{":
+	}else if val == "{" {
 		return FSTS
-		case val == "}":
+	}else if  val == "}"{
 		return FENS
+	}else{
+		fmt.Println("There is something wronng with your code")
+		os.Exit(1)
 	}
+	
+
+	return -1
 
 }

@@ -80,6 +80,7 @@ func (l *tokenizer) spacer(){
 		}
 
 	}
+
 }
 
 //@step 4
@@ -88,6 +89,7 @@ func (l *tokenizer) tokenizer(){
 	spacedstring := string(l.spacedfile)
 
 	l.tokens = strings.Fields(spacedstring)
+
 }
 
 
@@ -112,6 +114,6 @@ func get_tokens(src string) []string {
 	token_process.fileload(src)
 	token_process.spacer()
 	token_process.tokenizer()
-	retval := token_process.tokens
-	return retval
+	return token_process.tokens
+	
 }
