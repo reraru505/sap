@@ -1,26 +1,39 @@
 package main
 
 import (
-       "fmt"
+	//"fmt"
        "strings"
 )
 
 const (
-      keyword=iota+1
-      identifier
-      literal
-      special_symbol
-      start
-      end
-      startscope
-      endscope
+	FKEY=iota+1 //keyword 
+	FID //identifier
+	FLIT //literal
+	FOP //operator
+	FST //start
+	FEN //end
+	FSTS //start scope
+	FENS //end scope
 )
+
 //keyword n identifier
 
 func check_Keyword(val string) bool{
-     keys :=[13]string{"break","case","continue","default","else","fallthrough","for","goto","if","range","return","select","switch"}
+	keys :=[11]string{
+		"i32",
+		"i64",
+		"f32",
+		"f64",
+		"string",
+		"char",
+		"if",
+		"else",
+		"while",
+		"struct",
+		"proc"
+	}
      var bVal=false
-     for v:= range keys {
+     for _ , v:= range keys {
      	 if val==keys[v] {
 	    bVal=true
 	 }
@@ -54,10 +67,10 @@ func check_literal(val string) bool{
 
 //special symbol
 
-func check_special_symbol(val string) bool{
-     keys:=[11]string{"!","#","$","*","-","+",","}
+func check_operator(val string) bool{
+     keys:=[14]string{"!","%","*","-","+","/","|","&","&&","||",">","<","."}
      var bVal=false
-     for v:=range keys {
+     for _ ,v:=range keys {
      	 if val==keys[v] {
 	    bVal=true
 	  }
@@ -65,40 +78,25 @@ func check_special_symbol(val string) bool{
      return bVal
 }
 
-//start
 
-func check_start(val string) bool{
-     if(val=="(") {
-     		  return true
-     }else{
-	return false
-     }
-}
-//end
-func check_end(val string) bool{
-     if(val==")") {
-     		  return true
-     }else{
-	return false
-     }
-}
+//binds all functions 
+func type_checker(val string) int{
 
-//startscope
+	switch{
+		case check_keyword(val):
+		return FKEY
+		case check_literal(val):
+		return FLIT
+		case ckeck_operator(val):
+		return FOP
+		case val == "(":
+		return FST
+		case val == ")":
+		return FEN
+		case val == "{":
+		return FSTS
+		case val == "}":
+		return FENS
+	}
 
-func check_startscope(val string) bool{
-     if(val=="{") {
-     		  return true
-     }else{
-	return false
-     }
-}
-
-//endscope
-
-func check_endscope(val string) bool{
-     if(val=="}") {
-     		  return true
-     }else{
-	return false
-     }
 }
