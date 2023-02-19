@@ -1,0 +1,18 @@
+(data)
+
+main_a
+
+
+(text)
+
+_add:
+add a1 a2
+push [a]
+ret
+
+_main:
+push 2
+push 2
+call _add
+pop main_a
+print main_a

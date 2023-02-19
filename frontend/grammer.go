@@ -9,6 +9,11 @@ type token struct{
 	token_type int 
 }
 
+type typesystem struct{
+
+	
+}
+
 func tokenarray_get(arr []string) []token{
 	var buffer []token
 	
