@@ -107,13 +107,11 @@ func (l *tokenizer) is_special(c rune) bool {
 
 
 //@gives token as []stirng 
-
-func get_tokens(src string) []string {
-	var token_process tokenizer
-	token_process.init()
-	token_process.fileload(src)
-	token_process.spacer()
-	token_process.tokenizer()
-	return token_process.tokens
+//@usage
+//var token_process tokenizer
+//token_process.init()
+//token_process.fileload(src)
+//token_process.spacer()
+//token_process.tokenizer()
+//token_process.tokens
 	
-}
