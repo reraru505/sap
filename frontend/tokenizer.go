@@ -7,14 +7,30 @@ import (
 )
 
 const (
-	FKEY =iota //keyword 
+	FKEY  =iota //keyword 
 	FID //identifier
 	FLIT //literal
-	FOP //operator
 	FST //start
 	FEN //end
 	FSTS //start scope
 	FENS //end scope
+	FAOP//assignment operator
+	FEXC//Exclamation
+	FMOD//modulus
+	FSTAR//star
+	FSUB//subtraction
+	FADD//addition
+	FDIV//division
+	FLIN//singleline
+	FDLN//doubleline
+	FAND//and
+	FANDAND//andand
+	FGREAT//greaterthan
+	FLESS//lesserthan
+	FSTOP//fullstop
+	FCOL//colon
+	FCOM//comma
+	
 )
 
 //keyword n identifier
@@ -140,8 +156,8 @@ func check_literal(val string) bool{
 
 //special symbol
 
-func check_operator(val string) bool{
-     keys:=[17]string{"!","%","*","-","+","/","|","&","&&","||",">","<",".",":",",","="}
+/*func check_operator(val string) bool{
+     keys:=[17]string{"!","%","*","-","+","/","|","&","&&","||",">","<",".",":",","}
    
      for _ ,v := range keys {
      	 if val==v {
@@ -150,7 +166,7 @@ func check_operator(val string) bool{
      }
      return false
 }
-
+*/
 
 //binds all functions 
 func type_checker(val string) int{
@@ -159,8 +175,6 @@ func type_checker(val string) int{
 		return FKEY
 	}else if  check_literal(val){
 		return FLIT
-	}else if  check_operator(val){
-		return FOP
 	}else if  check_identifier(val){
 		return FID
 	}else if  val == "("{
@@ -171,6 +185,36 @@ func type_checker(val string) int{
 		return FSTS
 	}else if  val == "}"{
 		return FENS
+	}else if val == "="{
+	      return FAOP
+	}else if val =="!"{
+	      return FEXC
+	}else if val =="%"{
+	      return FMOD
+	}else if val =="*"{
+	      return FSTAR
+	}else if val =="-"{
+	      return FSUB
+	}else if val =="+"{
+	      return FADD
+	}else if val =="|"{
+	      return FLIN
+	}else if val =="||"{
+	      return FDLN
+	}else if val =="&"{
+	      return FAND
+	}else if val =="&&"{
+	      return FANDAND
+	}else if val==">"{
+	      return FGREAT
+	}else if val =="<"{
+	      return FLESS
+	}else if val =="."{
+	      return FSTOP
+	}else if val ==":"{
+	      return FCOL
+	}else if val ==","{
+	      return FCOM
 	}else{
 		fmt.Println("There is something wronng with your code")
 		os.Exit(1)
