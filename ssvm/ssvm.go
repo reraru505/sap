@@ -247,42 +247,154 @@ func (m *machine) add(a string,b string){
 }
 
 func (m *machine) sub(a string,b string){
-	c,_ := strconv.Atoi(a)
-	d,_ := strconv.Atoi(b)
+		var av string
+	var bv string
+	if a == "[X]"{
+		av = m.X
+	}else if a == "[Y]"{
+		av = m.Y
+	}else if a == "[A]"{
+		av = m.A
+	}else {
+		av = a
+	}
 
-	e := c - d
-	m.A = strconv.Itoa(e)
+	if b == "[X]"{
+		bv = m.X
+	}else if b == "[Y]"{
+		bv = m.Y
+	}else if b == "[A]"{
+		bv = m.A
+	}else {
+		bv = b
+	}
+
+	c,_ := strconv.Atoi(av)
 	
+
+	d,_ := strconv.Atoi(bv)
+
+	var e int
+
+	// fmt.Println ("c ",c ,"and ","d ",d)
+	
+	e = c - d 
+
+	m.A = strconv.Itoa(e)
 	m.codeindex += 2
 }
 
 func (m *machine) mul(a string ,b string){
-	c,_ := strconv.Atoi(a)
-	d,_ := strconv.Atoi(b)
+		var av string
+	var bv string
+	if a == "[X]"{
+		av = m.X
+	}else if a == "[Y]"{
+		av = m.Y
+	}else if a == "[A]"{
+		av = m.A
+	}else {
+		av = a
+	}
 
-	e := c * d
+	if b == "[X]"{
+		bv = m.X
+	}else if b == "[Y]"{
+		bv = m.Y
+	}else if b == "[A]"{
+		bv = m.A
+	}else {
+		bv = b
+	}
+
+	c,_ := strconv.Atoi(av)
+	
+
+	d,_ := strconv.Atoi(bv)
+
+	var e int
+
+	// fmt.Println ("c ",c ,"and ","d ",d)
+	
+	e = c * d 
+
 	m.A = strconv.Itoa(e)
-
 	m.codeindex += 2
 }
 
 func (m *machine) div(a string,b string){
-	c,_ := strconv.Atoi(a)
-	d,_ := strconv.Atoi(b)
+		var av string
+	var bv string
+	if a == "[X]"{
+		av = m.X
+	}else if a == "[Y]"{
+		av = m.Y
+	}else if a == "[A]"{
+		av = m.A
+	}else {
+		av = a
+	}
 
-	e := c / d
+	if b == "[X]"{
+		bv = m.X
+	}else if b == "[Y]"{
+		bv = m.Y
+	}else if b == "[A]"{
+		bv = m.A
+	}else {
+		bv = b
+	}
+
+	c,_ := strconv.Atoi(av)
+	
+
+	d,_ := strconv.Atoi(bv)
+
+	var e int
+
+	// fmt.Println ("c ",c ,"and ","d ",d)
+	
+	e = c / d 
+
 	m.A = strconv.Itoa(e)
-
 	m.codeindex += 2
 }
 
 func (m *machine) mod(a string ,b string){
-	c,_ := strconv.Atoi(a)
-	d,_ := strconv.Atoi(b)
+	var av string
+	var bv string
+	if a == "[X]"{
+		av = m.X
+	}else if a == "[Y]"{
+		av = m.Y
+	}else if a == "[A]"{
+		av = m.A
+	}else {
+		av = a
+	}
 
-	e := c % d
+	if b == "[X]"{
+		bv = m.X
+	}else if b == "[Y]"{
+		bv = m.Y
+	}else if b == "[A]"{
+		bv = m.A
+	}else {
+		bv = b
+	}
+
+	c,_ := strconv.Atoi(av)
+	
+
+	d,_ := strconv.Atoi(bv)
+
+	var e int
+
+	// fmt.Println ("c ",c ,"and ","d ",d)
+	
+	e = c % d 
+
 	m.A = strconv.Itoa(e)
-
 	m.codeindex += 2
 }
 
