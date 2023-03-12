@@ -5,5 +5,7 @@ add : proc(a : i32,b : i32){
 
 main(){
 	a : i32 = add(2,2)
+	b: "batuis a batu haha"
+	c: "this is the third test"
 	print(a)
 }

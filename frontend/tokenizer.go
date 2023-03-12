@@ -27,9 +27,10 @@ const (
 	FANDAND//andand
 	FGREAT//greaterthan
 	FLESS//lesserthan
-	FSTOP//fullstop
+	FDOT//dotoperator
 	FCOL//colon
 	FCOM//comma
+	FDQUO//doublequotation
 	
 )
 
@@ -167,6 +168,7 @@ func check_literal(val string) bool{
      return false
 }
 */
+//Convert string to a single token 
 
 //binds all functions 
 func type_checker(val string) int{
@@ -210,12 +212,14 @@ func type_checker(val string) int{
 	}else if val =="<"{
 	      return FLESS
 	}else if val =="."{
-	      return FSTOP
+	      return FDOT
 	}else if val ==":"{
 	      return FCOL
 	}else if val ==","{
 	      return FCOM
-	}else{
+	}else if val==string(0x22){
+	      return FDQUO
+	}else{ 	       
 		fmt.Println("There is something wronng with your code")
 		os.Exit(1)
 	}
