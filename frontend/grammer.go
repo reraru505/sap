@@ -66,10 +66,44 @@ func tok_name(val int) string{
 			
      }
 }
+//concatinate strings
+func flatten_string(val []string)[]string{
+     var buffer []string
+     var buffer2 string
+     var jval int
+     for i:=0;i<len(val);i++{
+     	 if val[i]==string(0x22){
+	    buffer=append(buffer,val[i])
+	    count:=0
+	    for j:=i+1;j<len(val);j++{
+	    	 if val[j]==string(0x22) && count!=1{
+		      count=1
+		      jval=j
+		    }
+		 if count==1{
+		    continue
+		 }
+		}
+	    
+	    fmt.Println("Val of jval: ",jval)
+	    for k:=i+1;k<jval;k++{
+	    	buffer2=buffer2+val[k]
+	    }
+	    buffer=append(buffer,buffer2)
+		buffer2=""
+
+	    i=jval
+	 }
+	 buffer=append(buffer,val[i])
+	 
+	 }
+	 return buffer
+     
+}
 func tokenarray_get(arr []string) []token{
 	var buffer []token
-	
-	for  _ , i := range arr{
+	arr2:=flatten_string(arr)
+	for  _ , i := range arr2{
 		var tok token
 		fmt.Println(i)
 		tok.token_name = i
@@ -77,7 +111,6 @@ func tokenarray_get(arr []string) []token{
 		tok.token_operator_name=tok_name(tok.token_type)
 		buffer = append(buffer,tok)
 	}
-
 	return buffer
 	
 }
