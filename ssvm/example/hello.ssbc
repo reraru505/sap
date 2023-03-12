@@ -1,0 +1,20 @@
+
+.func
+ldx 1
+ldy 1
+#loop
+add [X] [Y]
+ldx [Y]
+ldy [A]
+print [Y]
+print <newline>
+cmp [A] 800
+jil loop
+ret
+
+
+.main
+call func
+print <newline>
+sys_exit
+

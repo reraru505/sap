@@ -1,0 +1,8 @@
+.factorial
+ldx 9
+sub [X] 1
+#loop
+ldy [A]
+mul [X] [Y]
+ldx [A]
+push [Y]
